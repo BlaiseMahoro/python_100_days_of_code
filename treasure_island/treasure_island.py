@@ -59,9 +59,31 @@ def hard_way():
             return
         count += 1
 
-
+def print_game_logo():
+    print(r'''
+                             _.--.
+                        _.-'_:-'||
+                    _.-'_.-::::'||
+               _.-:'_.-::::::'  ||
+             .'`-.-:::::::'     ||
+            /.'`;|:::::::'      ||_
+           ||   ||::::::'     _.;._'-._
+           ||   ||:::::'  _.-!oo @.!-._'-.
+           \'.  ||:::::.-!()oo @!()@.-'_.|
+            '.'-;|:.-'.&$@.& ()$%-'o.'\U||
+              `>'-.!@%()@'@_%-'_.-o _.|'||
+               ||-._'-.@.-'_.-' _.-o  |'||
+               ||=[ '-._.-\U/.-'    o |'||
+               || '-.]=|| |'|      o  |'||
+               ||      || |'|        _| ';
+               ||      || |'|    _.-'_.-'
+               |'-._   || |'|_.-'_.-'
+            jgs '-._'-.|| |' `_.-'
+                    '-.||_/.-'
+          ''')
 
 def main():
+    print_game_logo()
     # comment one or the other to test
     # easy_way()
     hard_way() #this is more efficient when you have thousands of states and decisions.
