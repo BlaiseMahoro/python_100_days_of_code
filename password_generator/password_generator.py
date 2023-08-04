@@ -30,11 +30,11 @@ def generate_password():
 
     while any(char_nums):
         i = random.randint(0, len(chars) - 1)
-        j = random.randint(0, len(chars[i]) - 1)
+        
         if not char_nums[i]:
             continue
 
-        gen_password.append(chars[i][j])
+        gen_password.append(random.choice(chars[i]))
         char_nums[i] -= 1
 
     return gen_password
