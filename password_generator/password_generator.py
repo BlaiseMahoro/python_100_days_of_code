@@ -17,7 +17,7 @@ chars = [letters, numbers, special_symbols]
 
 '''
 This function uses pseudo-random number generator which is not good for security because one can predict it.
-To make this password generator, one can make stronger password use a physical activity be its seed for random number generation.
+To make this password generator, one needs to use the python's secrets module.
 '''
 def generate_password():
     letters_num = int(input('How many letters would you like in your password?\n'))
@@ -37,7 +37,8 @@ def generate_password():
         gen_password.append(random.choice(chars[i]))
         char_nums[i] -= 1
 
-    return gen_password
+    random.shuffle(gen_password)
+    return ''.join(gen_password)
         
 
 def main():
