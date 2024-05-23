@@ -1,2 +1,6 @@
 my_words.txt
 *.cpython-310.pyc
+hirst-painting/venv/*
+nato_alphabet/main.py
+mail_merge/.DS_Store
+.vscode/launch.json
