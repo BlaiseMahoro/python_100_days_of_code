@@ -4,3 +4,10 @@ hirst-painting/venv/*
 nato_alphabet/main.py
 mail_merge/.DS_Store
 .vscode/launch.json
+flask-ner/tests/test_api.py
+flask-ner/chromedriver-win64/chromedriver.exe
+flask-ner/chromedriver-win64/LICENSE.chromedriver
+flask-ner/flaskner.egg-info/dependency_links.txt
+flask-ner/flaskner.egg-info/PKG-INFO
+flask-ner/flaskner.egg-info/SOURCES.txt
+flask-ner/flaskner.egg-info/top_level.txt
