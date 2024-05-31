@@ -2,6 +2,7 @@
 from tkinter import *
 from tkinter import messagebox
 import random
+import pyperclip
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -48,6 +49,7 @@ def generate_password():
     password_gen = generate()
     password_entry.delete(0, END)
     password_entry.insert(0, password_gen)
+    pyperclip.copy(password_gen)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():    
     website = website_entry.get()
