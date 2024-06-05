@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -67,14 +68,56 @@ def save():
     if not is_ok:
         return
     
-    with open("passowrds.txt", "a") as file:
-        file.write(f'{website} | {username} | {password}\n')
+   
+    try: 
+        with open('passwords.json', 'r') as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        with open('passwords.json', 'w') as file:
+            data = {
+                website: {
+                "username": username,
+                "password": password
+                }
+            }
+            json.dump(data, file, indent= 4)
+    else:
+        data[website] = {
+                "username": username,
+                "password": password
+            }
+        with open('passwords.json', 'w') as file:
+            json.dump(data, file, indent=4)
+    finally:
+        website_entry.delete(0, END)
+        username_entry.delete(0,END)
+        username_entry.insert(0, 'blaisemahoro1@gmail.com')
+        password_entry.delete(0, END)
+        website_entry.focus()
         
-    website_entry.delete(0, END)
-    username_entry.delete(0,END)
-    username_entry.insert(0, 'blaisemahoro1@gmail.com')
-    password_entry.delete(0, END)
-    website_entry.focus()
+        
+    
+def search():
+    website = website_entry.get()
+    
+    try:
+        with open('passwords.json', 'r') as file:
+            data = json.load(file)
+            record = data[website]
+            username = record['username']
+            password = record['password']
+            messagebox.showwarning(title=website, message=f'Username: {username}\nPassword: {password}')
+    except FileNotFoundError:
+        messagebox.showwarning(title='Oops', message="Unable to find password")
+        
+    except KeyError:
+        messagebox.showwarning(title='Oops', message="Unable to find password")
+        
+             
+                
+
+        
+   
 # ---------------------------- UI SETUP ------------------------------- #
 
 
@@ -90,8 +133,8 @@ canvas.grid(row=0, column=1)
 
 website_label = Label(text='Website:')
 website_label.grid(column=0, row=1)
-website_entry = Entry(width=35)
-website_entry.grid(column=1, row=1, columnspan=2)
+website_entry = Entry(width=27)
+website_entry.grid(column=1, row=1)
 website_entry.focus()
 
 username_label = Label(text='Email/Username:')
@@ -107,6 +150,9 @@ password_entry.grid(column=1, row=3)
 
 generate_button = Button(text='Generate Password', command=generate_password)
 generate_button.grid(row=3, column=2)
+
+search_button = Button(text='Search', command=search, width=13)
+search_button.grid(row=1, column=2)
 
 add_button = Button(text='Add', width=36, command=save)
 add_button.grid(row=4, column=1, columnspan=2)
